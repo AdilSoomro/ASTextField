@@ -1,4 +1,3 @@
-
 ASTextField
 =================
 
@@ -12,5 +11,5 @@ Created By:
 [Adil Soomro][2]
 
 
-  [1]: https://raw.githubusercontent.com/AdilSoomro/iOSCutomTextField/master/ScreenShot.png
+  [1]: https://raw.githubusercontent.com/AdilSoomro/ASTextField/master/ScreenShot.png
   [2]: http://about.me/adil.soomro
