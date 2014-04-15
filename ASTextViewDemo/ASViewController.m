@@ -31,8 +31,8 @@
     
     
     //setup text field with respective icons
-    [ASTextField setupTextField:_usernameField withIconName:@"user_name_icon"];
-    [ASTextField setupTextField:_passwordField withIconName:@"password_icon"];
+    [_usernameField setupTextFieldWithIconName:@"user_name_icon"];
+    [_passwordField setupTextFieldWithIconName:@"password_icon"];
 }
 
 #pragma mark - tableview deleagate datasource stuff

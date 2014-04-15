@@ -13,8 +13,6 @@
 
 @implementation ASTextField
 
-
-
 - (CGRect)textRectForBounds:(CGRect)bounds {
     CGFloat x = bounds.origin.x + kLeftPadding;
     CGFloat y = bounds.origin.y + kVerticalPadding;
@@ -26,22 +24,22 @@
     return [self textRectForBounds:bounds];
 }
 
-
-+ (void)setupTextField:(UITextField *)textField withIconName:(NSString *)name{
+- (void)setupTextFieldWithIconName:(NSString *)name{
     CGFloat leftEdge = 43;
     UIImage *image = [UIImage imageNamed:@"text_field"];
     image = [image resizableImageWithCapInsets:UIEdgeInsetsMake(10, leftEdge, 10, 19)];
     
-    [textField setBackground:image];
+    [self setBackground:image];
     
     UIImage *icon = [UIImage imageNamed:name];
     
     //38x35
-    UIImageView * left = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, leftEdge, textField.frame.size.height)];
+    UIImageView * left = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, leftEdge, self.frame.size.height)];
     [left setImage:icon];
     [left setContentMode:UIViewContentModeCenter];
-    textField.leftView = left;
-    textField.leftViewMode = UITextFieldViewModeAlways;
+    self.leftView = left;
+    self.leftViewMode = UITextFieldViewModeAlways;
     
 }
+
 @end

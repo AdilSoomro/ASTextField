@@ -9,5 +9,10 @@
 #import <UIKit/UIKit.h>
 
 @interface ASTextField : UITextField
-+ (void)setupTextField:(UITextField *)textField withIconName:(NSString *)name;
+
+@end
+
+
+@interface UITextField ()
+- (void)setupTextFieldWithIconName:(NSString *)name;
 @end
