@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+typedef enum {
+    ASTextFieldTypeDefault,
+    ASTextFieldTypeRound
+}ASTextFieldType;
+
 @interface ASTextField : UITextField
 
 @end
@@ -15,4 +20,5 @@
 
 @interface UITextField ()
 - (void)setupTextFieldWithIconName:(NSString *)name;
+- (void)setupTextFieldWithType:(ASTextFieldType)type withIconName:(NSString *)name;
 @end

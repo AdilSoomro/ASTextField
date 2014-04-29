@@ -60,6 +60,17 @@
     [cell setBackgroundColor:[UIColor clearColor]];
 }
 
+- (IBAction)changeFieldBackground:(UISegmentedControl *)segment {
+    if ([segment selectedSegmentIndex] == 0) {
+        //setup text field with default respective icons
+        [_usernameField setupTextFieldWithIconName:@"user_name_icon"];
+        [_passwordField setupTextFieldWithIconName:@"password_icon"];
+    }else{
+        [_usernameField setupTextFieldWithType:ASTextFieldTypeRound withIconName:@"user_name_icon"];
+        [_passwordField setupTextFieldWithType:ASTextFieldTypeRound withIconName:@"password_icon"];
+    }
+}
+
 - (IBAction)letMeIn:(id)sender {
     [self resignAllResponders];
 }

@@ -7,39 +7,94 @@
 //
 
 #import "ASTextField.h"
-#define kLeftPadding 50
-#define kVerticalPadding 10
+#define kLeftPadding 10
+#define kVerticalPadding 12
 #define kHorizontalPadding 10
+
+@interface ASTextField (){
+    ASTextFieldType _type;
+}
+
+@end
 
 @implementation ASTextField
 
 - (CGRect)textRectForBounds:(CGRect)bounds {
-    CGFloat x = bounds.origin.x + kLeftPadding;
+    UIEdgeInsets edge = [self edgeInsetsForType:_type];
+    
+    CGFloat x = bounds.origin.x + edge.left +kLeftPadding;
     CGFloat y = bounds.origin.y + kVerticalPadding;
     
     
     return CGRectMake(x,y,bounds.size.width - kHorizontalPadding*2, bounds.size.height - kVerticalPadding*2);
+    
 }
 - (CGRect)editingRectForBounds:(CGRect)bounds {
     return [self textRectForBounds:bounds];
 }
 
 - (void)setupTextFieldWithIconName:(NSString *)name{
-    CGFloat leftEdge = 43;
-    UIImage *image = [UIImage imageNamed:@"text_field"];
-    image = [image resizableImageWithCapInsets:UIEdgeInsetsMake(10, leftEdge, 10, 19)];
+    [self setupTextFieldWithType:ASTextFieldTypeDefault withIconName:name];
+}
+- (void)setupTextFieldWithType:(ASTextFieldType)type withIconName:(NSString *)name{
+    UIEdgeInsets edge = [self edgeInsetsForType:type];
+    NSString *imageName = [self backgroundImageNameForType:type];
+    CGRect imageViewFrame = [self iconImageViewRectForType:type];
+    _type = type;
+    
+    
+    UIImage *image = [UIImage imageNamed:imageName];
+    image = [image resizableImageWithCapInsets:edge];
     
     [self setBackground:image];
     
     UIImage *icon = [UIImage imageNamed:name];
     
-    //38x35
-    UIImageView * left = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, leftEdge, self.frame.size.height)];
-    [left setImage:icon];
-    [left setContentMode:UIViewContentModeCenter];
-    self.leftView = left;
+    //make an imageview to show an icon on the left side of textfield
+    UIImageView * iconImage = [[UIImageView alloc] initWithFrame:imageViewFrame];
+    [iconImage setImage:icon];
+    [iconImage setContentMode:UIViewContentModeCenter];
+    self.leftView = iconImage;
     self.leftViewMode = UITextFieldViewModeAlways;
+
+    [self setNeedsDisplay]; //force reload for updated editing rect for bound to take effect.
+}
+- (CGRect)iconImageViewRectForType:(ASTextFieldType) type{
+    UIEdgeInsets edge = [self edgeInsetsForType:type];
+    if (type == ASTextFieldTypeRound) {
+        return CGRectMake(0, 0, edge.left*2, self.frame.size.height); //to put the icon inside
+    }
+    /*
+     if (type == ASTextFieldTypeBlahBlah) {
+     return 786; //whatever suits your field
+     }
+     */
     
+    return CGRectMake(0, 0, edge.left, self.frame.size.height); // default
+}
+- (UIEdgeInsets)edgeInsetsForType:(ASTextFieldType) type{
+    if (type == ASTextFieldTypeRound) {
+        return UIEdgeInsetsMake(13, 13, 13, 13);
+    }
+    /*
+     if (type == ASTextFieldTypeBlahBlah) {
+     return UIEdgeInsetsMake(15, 15, 15, 15); //whatever suits your field
+     }
+     */
+    
+    return UIEdgeInsetsMake(10, 43, 10, 19); // default
+}
+- (NSString *)backgroundImageNameForType:(ASTextFieldType) type{
+    if (type == ASTextFieldTypeRound) {
+        return @"round_textfield";
+    }
+    /*
+     if (type == ASTextFieldTypeBlahBlah) {
+        return @""; // return suitable
+     }
+     */
+    
+    return @"text_field"; // default
 }
 
 @end

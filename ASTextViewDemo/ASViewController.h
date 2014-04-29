@@ -21,5 +21,6 @@
 @property (strong, nonatomic) IBOutlet UITextField *passwordField;
 @property (strong, nonatomic) IBOutlet UITextField *usernameField;
 
+- (IBAction)changeFieldBackground:(id)sender;
 - (IBAction)letMeIn:(id)sender;
 @end
