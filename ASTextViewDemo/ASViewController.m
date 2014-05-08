@@ -36,7 +36,7 @@
 }
 
 #pragma mark - tableview deleagate datasource stuff
-- (float)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     //return cell's height for particular row
     return ((UITableViewCell*)[self.cellArray objectAtIndex:indexPath.row]).frame.size.height;
